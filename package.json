@@ -10,8 +10,11 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "prettier": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-query": "^4.0.0-alpha.23",
+    "react-router-dom": "latest",
     "react-scripts": "latest",
     "typescript": "latest",
     "web-vitals": "latest"
@@ -39,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "msw": "latest"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
