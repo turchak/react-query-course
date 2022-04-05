@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { IssuesList } from 'components';
+import { Page } from 'layouts';
+import { Box, Typography } from '@mui/material';
 
 export default function Issues() {
-  console.log('mount');
   return (
-    <section>
-      <main>
-        <section>
-          <h1>Issues</h1>
-          <IssuesList />
-        </section>
-        <aside>LabelList</aside>
-      </main>
-    </section>
+    <Page>
+      <Box>
+        <Typography variant="h4">Issues</Typography>
+        <IssuesList />
+      </Box>
+      <aside>LabelList</aside>
+    </Page>
   );
 }

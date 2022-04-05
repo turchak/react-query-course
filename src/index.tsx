@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
+import CssBaseline from '@mui/material/CssBaseline';
 const queryClient = new QueryClient();
 const rootElement = document.getElementById('root') as HTMLElement;
 const root = createRoot(rootElement);
@@ -12,6 +12,7 @@ const root = createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <CssBaseline />
       <App />
     </QueryClientProvider>
   </React.StrictMode>
