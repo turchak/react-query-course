@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import CssBaseline from '@mui/material/CssBaseline';
+import { CssBaseline } from '@mui/material';
 const queryClient = new QueryClient();
 const rootElement = document.getElementById('root') as HTMLElement;
 const root = createRoot(rootElement);

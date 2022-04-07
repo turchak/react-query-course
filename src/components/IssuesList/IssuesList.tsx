@@ -1,10 +1,9 @@
-// import { IssueItem } from 'components';
+import { IssueItem } from 'components';
 import * as React from 'react';
 import { useQuery } from 'react-query';
-// import { Issue } from 'types';
+import { Issue } from 'types';
 import { API } from 'config';
-import { Skeleton, Typography, Box } from '@mui/material';
-import { IssueItem } from '../IssueItem';
+import { Typography, Box, CircularProgress } from '@mui/material';
 
 export default function IssuesList() {
   const issuesQuery = useQuery(['issues'], () =>
@@ -12,20 +11,24 @@ export default function IssuesList() {
   );
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
       <Typography variant="h6">Issues list</Typography>
-      {!issuesQuery.isLoading && (
-        <Skeleton>
-          <IssueItem />
-        </Skeleton>
+      {issuesQuery.isLoading && (
+        <CircularProgress sx={{ alignSelf: 'center' }} />
       )}
-      {/*{issuesQuery.isLoading && (*/}
-      {/*  <ul>*/}
-      {/*    {issuesQuery.data?.map((issue: Issue) => (*/}
-      {/*      <IssueItem key={issue.id} {...issue} />*/}
-      {/*    ))}*/}
-      {/*  </ul>*/}
-      {/*)}*/}
+      {!issuesQuery.isLoading && (
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {issuesQuery.data?.map((issue: Issue) => (
+            <IssueItem key={issue.id} {...issue} />
+          ))}
+        </Box>
+      )}
     </Box>
   );
 }
