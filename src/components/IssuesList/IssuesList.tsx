@@ -7,7 +7,7 @@ import { Typography, Box, CircularProgress } from '@mui/material';
 
 export default function IssuesList() {
   const issuesQuery = useQuery(['issues'], () =>
-    fetch(API.ISSUES).then((response) => response.json())
+    fetch(API.issues).then((response) => response.json())
   );
 
   return (
