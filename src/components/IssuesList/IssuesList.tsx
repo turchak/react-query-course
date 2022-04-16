@@ -1,14 +1,20 @@
 import { IssueItem } from 'components';
 import * as React from 'react';
 import { useQuery } from 'react-query';
-import { Issue } from 'types';
+import { Issue, Label } from 'types';
 import { API } from 'config';
-import { Typography, Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 
-export default function IssuesList() {
-  const issuesQuery = useQuery(['issues'], () =>
-    fetch(API.issues).then((response) => response.json())
-  );
+type IssuesListProps = {
+  labels: Label[];
+};
+
+export default function IssuesList({ labels }: IssuesListProps) {
+  const issuesQuery = useQuery(['issues', { labels }], () => {
+    const params = labels.map((label) => `labels[]=${label.id}`).join('&');
+    console.log(params);
+    return fetch(`${API.issues}?${params}`).then((response) => response.json());
+  });
 
   return (
     <Box
@@ -18,7 +24,6 @@ export default function IssuesList() {
         justifyContent: 'center',
       }}
     >
-      <Typography variant="h6">Issues list</Typography>
       {issuesQuery.isLoading && (
         <CircularProgress sx={{ alignSelf: 'center' }} />
       )}
