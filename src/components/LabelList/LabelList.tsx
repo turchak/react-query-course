@@ -5,19 +5,19 @@ import { Label } from 'components';
 import { Label as LabelType } from 'types';
 
 type LabelListProps = {
-  selected: LabelType[];
-  setSelected: (value: LabelType[]) => void;
+  labels: LabelType[];
+  setLabels: (value: LabelType[]) => void;
 };
 
-export default function LabelList({ selected, setSelected }: LabelListProps) {
+export default function LabelList({ labels, setLabels }: LabelListProps) {
   const labelsQuery = useLabelsData();
   if (labelsQuery.isLoading) return <CircularProgress size={10} />;
-  console.log(selected);
+
   const handleClick = (value: LabelType) => {
-    if (!selected.includes(value)) {
-      setSelected([...selected, value]);
+    if (!labels.includes(value)) {
+      setLabels([...labels, value]);
     } else {
-      setSelected(selected.filter((label) => label.id !== value.id));
+      setLabels(labels.filter((label) => label.id !== value.id));
     }
   };
   return (
@@ -28,7 +28,7 @@ export default function LabelList({ selected, setSelected }: LabelListProps) {
             key={label.id}
             value={label.id}
             onClick={handleClick}
-            active={selected.includes(label)}
+            active={labels.includes(label)}
           />
         ))}
     </Box>

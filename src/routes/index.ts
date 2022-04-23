@@ -1,4 +1,9 @@
+export const basePath = '';
+export const paths = {
+  issues: `${basePath}/`,
+  issue: `${basePath}/issue/:id`,
+};
 export const routes = {
-  issues: () => '/',
-  issue: (id: number) => `/issue/${id}`,
+  issues: () => paths.issues,
+  issue: (id: number) => paths.issue.replace(':id', `${id}`),
 };

@@ -1,19 +1,24 @@
 import { IssueItem } from 'components';
 import * as React from 'react';
 import { useQuery } from 'react-query';
-import { Issue, Label } from 'types';
+import { Issue, Label, Status } from 'types';
 import { API } from 'config';
 import { Box, CircularProgress } from '@mui/material';
 
 type IssuesListProps = {
   labels: Label[];
+  status: Status | null;
 };
 
-export default function IssuesList({ labels }: IssuesListProps) {
-  const issuesQuery = useQuery(['issues', { labels }], () => {
-    const params = labels.map((label) => `labels[]=${label.id}`).join('&');
-    console.log(params);
-    return fetch(`${API.issues}?${params}`).then((response) => response.json());
+export default function IssuesList({ labels, status }: IssuesListProps) {
+  const issuesQuery = useQuery(['issues', { labels, status }], () => {
+    const statusParams = status ? `&status=${status}` : '';
+    const labelsParams = labels
+      .map((label) => `labels[]=${label.id}`)
+      .join('&');
+    return fetch(`${API.issues}?${labelsParams}${statusParams}`).then(
+      (response) => response.json()
+    );
   });
 
   return (

@@ -18,6 +18,10 @@ export interface Label {
 }
 export type Status = 'backlog' | 'todo' | 'inProgress' | 'done' | 'cancelled';
 
+export function isOfTypeStatus(value: string): value is Status {
+  return ['backlog', 'todo', 'inProgress', 'done', 'cancelled'].includes(value);
+}
+
 export interface Issue {
   id: string;
   number: number;
