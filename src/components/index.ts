@@ -5,3 +5,4 @@ export * from './AssigneeUser';
 export * from './Label';
 export * from './LabelList';
 export * from './StatusSelect';
+export * from './IssueHeader';
