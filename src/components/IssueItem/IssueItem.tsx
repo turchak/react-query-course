@@ -17,7 +17,7 @@ import { AssigneeUser, Label } from 'components';
 
 type IssueItemProps = Issue;
 
-const statusIcon: { [key in Status]: React.ReactNode } = {
+export const statusIcon: { [key in Status]: React.ReactElement } = {
   backlog: <BacklogIcon sx={{ color: 'secondary.main' }} />,
   done: <DoneIcon sx={{ color: 'success.main' }} />,
   cancelled: <CancelledIcon sx={{ color: 'error.main' }} />,
@@ -71,7 +71,7 @@ export default function IssueItem({
             <Box sx={{ display: 'flex', gap: 1 }}>
               <Typography>#{number}</Typography>
               <Typography>
-                {formatDistance(new Date(createdDate), new Date())}
+                {formatDistance(new Date(createdDate), Date.now())}
               </Typography>
               <Typography>
                 by {createdByUser.isSuccess && createdByUser.data.name}

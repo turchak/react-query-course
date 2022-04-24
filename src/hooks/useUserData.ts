@@ -8,8 +8,8 @@ type User = {
 };
 
 export function useUserData(id: string) {
-  const getUser = (userId: string): Promise<User> => {
+  const fetchUser = (userId: string): Promise<User> => {
     return fetch(API.user(userId)).then((response) => response.json());
   };
-  return useQuery<User>(['user', id], () => getUser(id));
+  return useQuery<User>(['user', id], () => fetchUser(id));
 }

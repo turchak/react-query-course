@@ -5,4 +5,5 @@ export const API = {
   labels: `${API_URL}/api/labels`,
   user: (id: string) => `${API_URL}/api/users/${id}`,
   issue: (id: string) => `${API_URL}/api/issues/${id}`,
+  comments: (id: string) => `${API_URL}/api/issues/${id}/comments`,
 };

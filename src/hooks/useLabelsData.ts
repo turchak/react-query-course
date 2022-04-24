@@ -3,8 +3,8 @@ import { API } from 'config';
 import { Label } from 'types';
 
 export function useLabelsData() {
-  const getLabels = (): Promise<Label[]> => {
+  const fetchLabels = (): Promise<Label[]> => {
     return fetch(API.labels).then((response) => response.json());
   };
-  return useQuery<Label[]>(['labels'], getLabels);
+  return useQuery<Label[]>(['labels'], fetchLabels);
 }
