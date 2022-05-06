@@ -7,3 +7,4 @@ export * from './LabelList';
 export * from './StatusSelect';
 export * from './IssueHeader';
 export * from './Comment';
+export * from './Search';

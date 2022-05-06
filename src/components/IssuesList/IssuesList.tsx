@@ -1,4 +1,4 @@
-import { IssueItem } from 'components';
+import { IssueItem, Search } from 'components';
 import * as React from 'react';
 import { useQuery } from 'react-query';
 import { Issue, Label, Status } from 'types';
@@ -29,6 +29,7 @@ export default function IssuesList({ labels, status }: IssuesListProps) {
         justifyContent: 'center',
       }}
     >
+      <Search />
       {issuesQuery.isLoading && (
         <CircularProgress sx={{ alignSelf: 'center' }} />
       )}
