@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query';
-import { API } from 'config';
+import { useQuery } from '@tanstack/react-query';
+import { api, requestPaths } from 'services';
 
 type User = {
   id: string;
@@ -8,8 +8,8 @@ type User = {
 };
 
 export function useUserData(id: string) {
-  const fetchUser = (userId: string): Promise<User> => {
-    return fetch(API.user(userId)).then((response) => response.json());
+  const fetchUser = (id: string): Promise<User> => {
+    return api.get(requestPaths.user(id));
   };
-  return useQuery<User>(['user', id], () => fetchUser(id));
+  return useQuery(['user', id], () => fetchUser(id));
 }

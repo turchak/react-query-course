@@ -1,10 +1,10 @@
-import { useQuery } from 'react-query';
-import { API } from 'config';
+import { useQuery } from '@tanstack/react-query';
 import { IssueComment } from 'types';
+import { api, requestPaths } from 'services';
 
 export function useIssueComments(id: string) {
-  const fetchIssueComments = (id: string): Promise<IssueComment[]> => {
-    return fetch(API.comments(id)).then((response) => response.json());
+  const fetchIssueComments = async (id: string) => {
+    return api.get<IssueComment[]>(requestPaths.comments(id));
   };
   return useQuery(['issues', id, 'comments'], () => fetchIssueComments(id));
 }

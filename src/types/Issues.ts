@@ -7,15 +7,9 @@ export interface User {
 export interface Label {
   id: string;
   name: string;
-  color:
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'error'
-    | 'info'
-    | 'success'
-    | 'warning';
+  color: 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 }
+
 export type Status = 'backlog' | 'todo' | 'inProgress' | 'done' | 'cancelled';
 
 export function isOfTypeStatus(value: string): value is Status {

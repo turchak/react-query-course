@@ -1,10 +1,11 @@
-import { useQuery } from 'react-query';
-import { API } from 'config';
+import { useQuery } from '@tanstack/react-query';
 import { Label } from 'types';
+import { api, requestPaths } from 'services';
 
 export function useLabelsData() {
-  const fetchLabels = (): Promise<Label[]> => {
-    return fetch(API.labels).then((response) => response.json());
+  const fetchLabels = async (): Promise<Label[]> => {
+    return await api.get(requestPaths.labels);
   };
-  return useQuery<Label[]>(['labels'], fetchLabels);
+
+  return useQuery(['labels'], fetchLabels);
 }

@@ -1,6 +1,6 @@
-import { useQuery } from 'react-query';
-import { API } from 'config';
+import { useQuery } from '@tanstack/react-query';
 import { Issue } from 'types';
+import { api, requestPaths } from '../services';
 
 type SearchResponse = {
   count: number;
@@ -9,9 +9,9 @@ type SearchResponse = {
 
 export function useSearch(search: string) {
   const fetchSearch = async (search: string): Promise<SearchResponse> => {
-    const response = await fetch(API.search(search));
-    return await response.json();
+    return await api.get(requestPaths.search, { params: { q: search } });
   };
+
   return useQuery(['issues', 'search', search], () => fetchSearch(search), {
     enabled: !!search,
   });

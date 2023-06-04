@@ -1,6 +1,6 @@
-import { API } from 'config';
-import { useQuery } from 'react-query';
-import { Label, Status } from 'types';
+import { useQuery } from '@tanstack/react-query';
+import { Issue, Label, Status } from 'types';
+import { api, requestPaths } from 'services';
 
 type IssuesData = {
   labels: Label[];
@@ -8,14 +8,9 @@ type IssuesData = {
 };
 
 export function useIssuesData({ labels, status }: IssuesData) {
-  return useQuery(['issues', { labels, status }], async () => {
-    const statusParams = status ? `&status=${status}` : '';
-    const labelsParams = labels
-      .map((label) => `labels[]=${label.id}`)
-      .join('&');
-    const response = await fetch(
-      `${API.issues}?${labelsParams}${statusParams}`
-    );
-    return await response.json();
-  });
+  const fetchIssues = async (): Promise<Issue[]> => {
+    return await api.get(requestPaths.issues);
+  };
+
+  return useQuery(['issues', { labels, status }], fetchIssues);
 }

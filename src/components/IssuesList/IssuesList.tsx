@@ -16,15 +16,11 @@ export default function IssuesList({ labels, status }: IssuesListProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const input = event.currentTarget.elements.namedItem(
-      'search'
-    ) as HTMLInputElement;
+    const input = event.currentTarget.elements.namedItem('search') as HTMLInputElement;
     setSearch(input.value);
   };
 
-  const isLoading =
-    issuesQuery.isLoading ||
-    (searchQuery.isLoading && searchQuery.fetchStatus !== 'idle');
+  const isLoading = issuesQuery.isLoading || (searchQuery.isLoading && searchQuery.fetchStatus !== 'idle');
 
   return (
     <Box
@@ -51,9 +47,7 @@ export default function IssuesList({ labels, status }: IssuesListProps) {
       {!!search
         ? searchQuery.isSuccess && (
             <>
-              <Typography variant="body2">
-                Result: {searchQuery.data.count} issues
-              </Typography>
+              <Typography variant="body2">Result: {searchQuery.data.count} issues</Typography>
               {searchQuery.data.items.map((issue: Issue) => (
                 <IssueItem key={issue.id} {...issue} />
               ))}

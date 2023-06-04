@@ -24,12 +24,7 @@ export default function LabelList({ labels, setLabels }: LabelListProps) {
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
       {labelsQuery.isSuccess &&
         labelsQuery.data.map((label) => (
-          <Label
-            key={label.id}
-            value={label.id}
-            onClick={handleClick}
-            active={labels.includes(label)}
-          />
+          <Label key={label.id} value={label.id} onClick={handleClick} active={labels.includes(label)} />
         ))}
     </Box>
   );

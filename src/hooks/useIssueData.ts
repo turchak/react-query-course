@@ -1,10 +1,10 @@
-import { useQuery } from 'react-query';
-import { API } from 'config';
+import { useQuery } from '@tanstack/react-query';
 import { Issue } from 'types';
+import { api, requestPaths } from '../services';
 
 export function useIssueData(id: string) {
   const fetchIssueData = (id: string): Promise<Issue> => {
-    return fetch(API.issue(id)).then((response) => response.json());
+    return api.get(requestPaths.issue(id));
   };
   return useQuery(['issue', id], () => fetchIssueData(id));
 }
